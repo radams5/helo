@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const massive = require('massive')
+ctrl = require('./controller')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const app = express()
@@ -14,3 +15,6 @@ massive(CONNECTION_STRING).then(db => {
   app.listen(PORT, () => {console.log('server running on 4000')})
 })
 
+app.post('/api/register', ctrl.register)
+app.post('/api/login', ctrl.login)
+// app.get('/api/posts', ctrl.getPosts)
